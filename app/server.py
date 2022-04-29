@@ -3,6 +3,7 @@ import tornado.web;
 import tornado.ioloop;
 import tornado.template;
 import os;
+import sys;
 
 settings = {
     "cookie_secret": "1s@d!n3%k",
@@ -88,6 +89,11 @@ def make_results_tree(path):
             tree['children'].append(dict(name=name))
     return tree
 
+if (len(sys.argv) != 3):
+    print("Usage: ./server.py [port] [pathToServer]");
+    exit();
+
+
 application = tornado.web.Application([
     (r"/", MainHandler),
     (r"/login", LoginHandler),
@@ -97,6 +103,6 @@ application = tornado.web.Application([
 ], cookie_secret=settings["cookie_secret"])
 
 server = tornado.httpserver.HTTPServer(application)
-server.bind(8888)
+server.bind(sys.argv[1]);
 server.start(0)
 tornado.ioloop.IOLoop.current().start()
