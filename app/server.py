@@ -7,7 +7,7 @@ import sys;
 
 settings = {
     "cookie_secret": "1s@d!n3%k",
-    "server-path": "/home/szymon/Desktop/"
+    "server-path": sys.argv[2]
 }
 
 
